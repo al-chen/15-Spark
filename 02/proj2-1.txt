@@ -1,0 +1,13 @@
+Partner 1 Name: Brandon Pang
+Partner 1 Login: cs61c-ck
+
+Partner 2 Name: Alan Chen
+Partner 2 Login: cs61c-aas
+
+1. A potential problem with this algorithm is that the friend suggests to generate all permutations of the blocks and pick the ones that satisfy the solution predicate, but as we can see from the 2x2 final solution, not every permutation is reachable from the same starting position. Every position should be reachable from any other valid position. However, in the example given, if (1,2,3,-) is in the solution set, then (1,3,2,-) cannot be a solution even though it has a 1 in the upper left slot because it cannot be reached from (1,2,3,-).
+
+
+2. A better method would be to start our algorithm on the single starting position and check each child board configuration with solution(). If we ever encounter a solution, we can designate it as such, and we do not need to further retrieve the children from this solution. Thus, the algorithm will terminate when we have reached all possible solutions in the solution set, which also occurs when we have strongly solved the puzzle.
+
+
+3. Rather than store distance to the solution, we can store the parent position, assuming we start the algorithm from the single starting position. A position may have multiple parents, but all of its parents must have the same level because they must have the same number of pegs. We change the solver to map the parent position to each child position. Then, during reduction, we combine the parent positions into a single list. Assuming we store a parent position for every position, then it will take considerably more memory to store both a parent and child position for Peg Solitaire than to store a child position and integer level.
